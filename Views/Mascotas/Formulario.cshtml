@@ -54,7 +54,10 @@
                 dueno: document.getElementById("dueno").value
             };
 
-            localStorage.setItem("mascota", JSON.stringify(mascota));
+            let mascotas = JSON.parse(localStorage.getItem("mascotas")) || [];
+mascotas.push(mascota);
+localStorage.setItem("mascotas", JSON.stringify(mascotas));
+
             // Si quieres prevenir el envío y validar antes de enviar, puedes usar:
             // event.preventDefault();
         });
