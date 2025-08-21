@@ -1,0 +1,45 @@
+﻿@model TuApp.Models.Mascota
+
+@{
+    ViewData["Title"] = "Registrar Mascota";
+}
+
+<h1>Registrar Mascota</h1>
+
+<form asp-action="Crear" method="post" class="mt-4">
+    <div class="form-group">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Especie" class="form-label"></label>
+        <input asp-for="Especie" class="form-control" />
+        <span asp-validation-for="Especie" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Raza" class="form-label"></label>
+        <input asp-for="Raza" class="form-control" />
+        <span asp-validation-for="Raza" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Edad" class="form-label"></label>
+        <input asp-for="Edad" class="form-control" type="number" />
+        <span asp-validation-for="Edad" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Dueno" class="form-label"></label>
+        <input asp-for="Dueno" class="form-control" />
+        <span asp-validation-for="Dueno" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
