@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Mascota</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+
+    <h2>Lista de Mascotas</h2>
+    <table class="table table-bordered" id="tablaMascotas">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Edad</th>
+                <th>Dueño</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Se llenará automáticamente -->
+        </tbody>
+    </table>
+
+    <script>
+        const form = document.getElementById("formMascota");
+        const tabla = document.getElementById("tablaMascotas").querySelector("tbody");
+
+        // Cargar mascotas desde localStorage al cargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            const mascotas = JSON.parse(localStorage.getItem("mascotas")) || [];
+            mascotas.forEach(agregarFila);
+        });
+
+        // Evento al enviar el formulario
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const mascota = {
+                nombre: document.getElementById("nombre").value,
+                especie: document.getElementById("especie").value,
+                raza: document.getElementById("raza").value,
+                edad: document.getElementById("edad").value,
+                dueno: document.getElementById("dueno").value
+            };
+
+            // Guardar en localStorage
+            const mascotas = JSON.parse(localStorage.getItem("mascotas")) || [];
+            mascotas.push(mascota);
+            localStorage.setItem("mascotas", JSON.stringify(mascotas));
+
+            // Agregar a tabla
+            agregarFila(mascota);
+
+            // Limpiar formulario
+            form.reset();
+        });
+
+        // Función para agregar una fila a la tabla
+        function agregarFila(mascota) {
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
+                <td>${mascota.nombre}</td>
+                <td>${mascota.especie}</td>
+                <td>${mascota.raza}</td>
+                <td>${mascota.edad}</td>
+                <td>${mascota.dueno}</td>
+            `;
+            tabla.appendChild(fila);
+        }
+    </script>
+</body>
+</html>

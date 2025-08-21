@@ -11,6 +11,11 @@ namespace TuApp.Controllers
         {
             return View("Formulario");
         }
+        [HttpGet]
+        public IActionResult VistaTabla()
+        {
+            return View("Tablas");
+        }
 
         // Procesa el formulario
         [HttpPost]
